@@ -68,7 +68,9 @@ global class F_BonusBasedStatusBatchScheduler implements Database.Batchable<sobj
         //Create Events
         List<FieloPLT__Event__c> events = new List<FieloPLT__Event__c>();
         for(Id memberId : membersValueMap.keySet()){
-         	events.add(new FieloPLT__Event__c(FieloPLT__Member__c = memberId,  FieloPLT__Type__c= 'Bonus Based on Status', FieloPLT__Value__c = membersValueMap.get(memberId)));
+            if (membersValueMap.get(memberId).setScale(2) < 0.00) membersValueMap.put(memberId, 0.00);
+
+            events.add(new FieloPLT__Event__c(FieloPLT__Member__c = memberId,  FieloPLT__Type__c= 'Bonus Based on Status', FieloPLT__Value__c = membersValueMap.get(memberId)));
             /* Deactivated per business request
             if(memberActiveMonths.containsKey(memberId)){
                 events.add(new FieloPLT__Event__c(FieloPLT__Member__c = memberId,  FieloPLT__Type__c= 'Active Months Bonus', FieloPLT__Value__c = membersValueMap.get(memberId), F_ActiveMonths__c = (memberActiveMonths.get(memberId)).size()));
