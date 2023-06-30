@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FlexpointExpirationDate__c</fullName>
+    <description>FlexPoint Expiration Date</description>
+    <externalId>false</externalId>
+    <label>FlexPoint Expiration Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

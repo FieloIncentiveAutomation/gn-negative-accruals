@@ -10,19 +10,19 @@ public with sharing class TestNegativeAccruals {
     static {
         FieloPLT.CacheAPI.enableOnDemand(false);
         FieloPLT.CacheAPI.enableCacheAccess(false);
-        program = TestUtils.createPrograms('Program', 1)[0];
+        program = F_SObjectForTest.createPrograms('Program', 1)[0];
         insert program;
 
-        rt = TestUtils.createRuleTrigger('Event', 'FieloPLT__Event__c', 'CreatedDate', 'FieloPLT__Event__c', 'FieloPLT__Event__c', 'FieloPLT__Event__c');
+        rt = F_SObjectForTest.createRuleTrigger('Event', 'FieloPLT__Event__c', 'CreatedDate', 'FieloPLT__Event__c', 'FieloPLT__Event__c', 'FieloPLT__Event__c');
         insert rt;
 
-        action = TestUtils.createAction('FieloPLT__Member__c', null, null, rt.Id);
+        action = F_SObjectForTest.createAction('FieloPLT__Member__c', null, null, rt.Id);
         insert action;
 
-        promotions = TestUtils.createPromotions('TestPromotion', 1, program.Id);
+        promotions = F_SObjectForTest.createPromotions('TestPromotion', 1, program.Id);
         insert promotions;
 
-        rules = TestUtils.createRules('Rule ', 1, program.Id);
+        rules = F_SObjectForTest.createRules('Rule ', 1, program.Id);
         rules.get(0).FieloPLT__Type__c = 'No Competition';
         rules.get(0).FieloPLT__PointConversionMode__c = 'Multiplier';
         rules.get(0).FieloPLT__ConversionValue__c = 1;
@@ -35,7 +35,7 @@ public with sharing class TestNegativeAccruals {
         promotions.get(0).FieloPLT__Status__c = 'Active';
         update promotions;
 
-        members =  TestUtils.createIndividualAccounts('testMember', 1, program.Id);
+        members =  F_SObjectForTest.createIndividualAccounts('testMember', 1, program.Id);
         insert members;
         FieloPLT.CacheAPI.enableOnDemand(true);
         FieloPLT.CacheAPI.enableCacheAccess(true);

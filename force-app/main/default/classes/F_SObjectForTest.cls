@@ -1,7 +1,40 @@
-@isTest
-public with sharing class TestUtils {
+public class F_SObjectForTest {
 
-    public static List<FieloPLT__Program__c> createPrograms(String basename, Integer count) {
+	private static Integer recNum = 0;
+	private static Integer uniqueExternalIdCode(){
+        return ++recNum;
+    }
+
+  	public static List<FieloPLT__Level__c> createLevels(String basename, Integer count, Id programId){
+		List<FieloPLT__Level__c> results = new List<FieloPLT__Level__c>();
+		for(Integer x = 0; x < count; x++){
+			results.add(
+				new FieloPLT__Level__c(
+					Name = basename + x,
+					FieloPLT__Program__c = programId,
+					FieloPLT__ExternalId__c = basename + x + uniqueExternalIdCode()
+				)
+			);
+		}
+		System.assertNotEquals(null, results);
+		return results;
+	}
+
+    public static List<FieloPLT__Criterion__c> createLevelCriteria(Id levelId, Integer count){
+		List<FieloPLT__Criterion__c> results = new List<FieloPLT__Criterion__c>();
+		for(Integer x = 0; x < count; x++){
+			results.add(
+				new FieloPLT__Criterion__c(
+					FieloPLT__Level__c = levelId,
+					FieloPLT__ExternalId__c = levelId + '-' + x + uniqueExternalIdCode()
+				)
+			);
+		}
+		System.assertNotEquals(null, results);
+		return results;
+	}
+
+	public static List<FieloPLT__Program__c> createPrograms(String basename, Integer count) {
 		List<FieloPLT__Program__c> results = new List<FieloPLT__Program__c>();
 		for(Integer x = 0; x < count; x++){
 			results.add(
@@ -89,11 +122,6 @@ public with sharing class TestUtils {
 		}
 		System.assertNotEquals(null, results);
 		return results;
-	}
-
-	public static integer num = 0;
-    private static Integer uniqueExternalIdCode(){
-		return ++num;
 	}
 
 	public static String guid(){

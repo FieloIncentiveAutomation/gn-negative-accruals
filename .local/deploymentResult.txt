@@ -1,0 +1,21 @@
+Deploying v57.0 metadata to devtiago@pointstrigger.org using the v58.0 SOAP API.
+Deploy ID: 0Af890000027WV3CAM
+
+Deployed Source
+======================================================================================================================================================================================
+| State   Name                                                  Type        Path                                                                                                       
+| ─────── ───────────────────────────────────────────────────── ─────────── ────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+| Created F_BonusBasedStatusBatchScheduler                      ApexClass   force-app/main/default/classes/F_BonusBasedStatusBatchScheduler.cls                                        
+| Created F_BonusBasedStatusBatchScheduler                      ApexClass   force-app/main/default/classes/F_BonusBasedStatusBatchScheduler.cls-meta.xml                               
+| Created F_SObjectForTest                                      ApexClass   force-app/main/default/classes/F_SObjectForTest.cls                                                        
+| Created F_SObjectForTest                                      ApexClass   force-app/main/default/classes/F_SObjectForTest.cls-meta.xml                                               
+| Created F_TestBonusBasedStatusBatchScheduler                  ApexClass   force-app/main/default/classes/F_TestBonusBasedStatusBatchScheduler.cls                                    
+| Created F_TestBonusBasedStatusBatchScheduler                  ApexClass   force-app/main/default/classes/F_TestBonusBasedStatusBatchScheduler.cls-meta.xml                           
+| Created FieloPLT__Level__c.F_Threshold__c                     CustomField force-app/main/default/objects/FieloPLT__Level__c/fields/F_Threshold__c.field-meta.xml                     
+| Created FieloPLT__Member__c.F_LevelOverri_deEndDt__c          CustomField force-app/main/default/objects/FieloPLT__Member__c/fields/F_LevelOverri_deEndDt__c.field-meta.xml          
+| Created FieloPLT__Member__c.F_OptOut__c                       CustomField force-app/main/default/objects/FieloPLT__Member__c/fields/F_OptOut__c.field-meta.xml                       
+| Created FieloPLT__Member__c.Flexpoint__c                      CustomField force-app/main/default/objects/FieloPLT__Member__c/fields/Flexpoint__c.field-meta.xml                      
+| Created FieloPLT__Transaction__c.F_Online_Transaction_Type__c CustomField force-app/main/default/objects/FieloPLT__Transaction__c/fields/F_Online_Transaction_Type__c.field-meta.xml 
+| Created FieloPLT__Transaction__c.FlexpointExpirationDate__c   CustomField force-app/main/default/objects/FieloPLT__Transaction__c/fields/FlexpointExpirationDate__c.field-meta.xml   
+| Created FieloPLT__Transaction__c.Flexpoint__c                 CustomField force-app/main/default/objects/FieloPLT__Transaction__c/fields/Flexpoint__c.field-meta.xml                 
+
