@@ -8,6 +8,7 @@ session_id='00D260000009Ikd!ARIAQHPkRIOtVcuooE9Yk4VxtqPZu0RLNCRI89cke89zZmc7VVoQ
 sf project deploy start \
     --metadata ApexClass \
     --metadata ApexTrigger \
+    --metadata PermissionSet \
     --test-level RunSpecifiedTests \
     --tests TestNegativeAccruals \
     --tests F_TestBonusBasedStatusBatchScheduler \
