@@ -10,6 +10,11 @@ public with sharing class TestNegativeAccruals {
     static {
         FieloPLT.CacheAPI.enableOnDemand(false);
         FieloPLT.CacheAPI.enableCacheAccess(false);
+
+        FieloPLT.SObjectService.enableAdminPermission(true);
+        insert F_SObjectForTest.createFlexpointCurrency();
+        FieloPLT.SObjectService.enableAdminPermission(false);
+
         program = F_SObjectForTest.createPrograms('Program', 1)[0];
         insert program;
 
@@ -24,9 +29,9 @@ public with sharing class TestNegativeAccruals {
 
         rules = F_SObjectForTest.createRules('Rule ', 1, program.Id);
         rules.get(0).FieloPLT__Type__c = 'No Competition';
-        rules.get(0).FieloPLT__PointConversionMode__c = 'Multiplier';
-        rules.get(0).FieloPLT__ConversionValue__c = 1;
-        rules.get(0).FieloPLT__RecordFieldName__c = 'FieloPLT__Value__c';
+        rules.get(0).FlexpointConversionMode__c = 'Multiplier';
+        rules.get(0).FlexpointConversionValue__c = 1;
+        rules.get(0).FlexpointFieldName__c = 'FieloPLT__Value__c';
         rules.get(0).FieloPLT__Action__c = action.Id;
         rules.get(0).FieloPLT__Promotion__c = promotions.get(0).Id;
         rules.get(0).FieloPLT__RelatedList__c = 'FieloPLT__Event__c';
@@ -60,9 +65,9 @@ public with sharing class TestNegativeAccruals {
             );
         Test.stopTest();
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(250, members.get(0).FieloPLT__Points__c, 'Member should have 250 points left');
+        Assert.areEqual(250, members.get(0).Flexpoint__c, 'Member should have 250 points left');
 
         List<FieloPLT__Point__c> points =
             [
@@ -103,9 +108,9 @@ public with sharing class TestNegativeAccruals {
             );
         Test.stopTest();
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(0, members.get(0).FieloPLT__Points__c, 'Member should have 0 points');
+        Assert.areEqual(0, members.get(0).Flexpoint__c, 'Member should have 0 points');
 
         List<FieloPLT__Point__c> points = [
             SELECT Id, FieloPLT__TotalPoints__c, FieloPLT__UsedPoints__c, FieloPLT__Balance__c, FieloPLT__MemberBalance__c
@@ -135,9 +140,9 @@ public with sharing class TestNegativeAccruals {
             )
         };
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(250, members.get(0).FieloPLT__Points__c, 'Member should have 250 points left');
+        Assert.areEqual(250, members.get(0).Flexpoint__c, 'Member should have 250 points left');
 
         points = [
             SELECT Id, FieloPLT__TotalPoints__c, FieloPLT__UsedPoints__c, FieloPLT__ExpiredPoints__c, FieloPLT__Balance__c
@@ -146,7 +151,7 @@ public with sharing class TestNegativeAccruals {
             ORDER BY CreatedDate, Id
         ];
 
-        Assert.areEqual(250, members.get(0).FieloPLT__Points__c, 'Member should have 250 points left');
+        Assert.areEqual(250, members.get(0).Flexpoint__c, 'Member should have 250 points left');
         Assert.areEqual(500, points.get(0).FieloPLT__TotalPoints__c, 'Wrong Total Points for Point #1');
         Assert.areEqual(250, points.get(0).FieloPLT__UsedPoints__c, 'Wrong Used Points for Point #1');
         Assert.areEqual(250, points.get(0).FieloPLT__Balance__c, 'Wrong Balance for Point #1');
@@ -171,7 +176,7 @@ public with sharing class TestNegativeAccruals {
             insert new FieloPLT__Transaction__c(
                 FieloPLT__Member__c = members.get(0).Id,
                 FieloPLT__IsAdjust__c = true,
-                FieloPLT__Points__c = -500
+                Flexpoint__c = -500
             );
 
             FieloPLT.SObjectService.setStaticVariables();
@@ -189,9 +194,9 @@ public with sharing class TestNegativeAccruals {
             );
         Test.stopTest();
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(50, members.get(0).FieloPLT__Points__c, 'Member should have 250 points left');
+        Assert.areEqual(50, members.get(0).Flexpoint__c, 'Member should have 250 points left');
 
         List<FieloPLT__Point__c> points =
             [
@@ -249,7 +254,7 @@ public with sharing class TestNegativeAccruals {
             insert new FieloPLT__Transaction__c(
                 FieloPLT__Member__c = members.get(0).Id,
                 FieloPLT__IsAdjust__c = true,
-                FieloPLT__Points__c = -500
+                Flexpoint__c = -500
             );
 
             FieloPLT.SObjectService.setStaticVariables();
@@ -267,9 +272,9 @@ public with sharing class TestNegativeAccruals {
             );
         Test.stopTest();
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(0, members.get(0).FieloPLT__Points__c, 'Member should have 0 points left');
+        Assert.areEqual(0, members.get(0).Flexpoint__c, 'Member should have 0 points left');
 
         List<FieloPLT__Point__c> points =
             [
@@ -291,9 +296,9 @@ public with sharing class TestNegativeAccruals {
 
         update updPoints;
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(50, members.get(0).FieloPLT__Points__c, 'Member should have 250 points left');
+        Assert.areEqual(50, members.get(0).Flexpoint__c, 'Member should have 250 points left');
 
         points =
             [
@@ -346,7 +351,7 @@ public with sharing class TestNegativeAccruals {
             insert new FieloPLT__Transaction__c(
                 FieloPLT__Member__c = members.get(0).Id,
                 FieloPLT__IsAdjust__c = true,
-                FieloPLT__Points__c = -500
+                Flexpoint__c = -500
             );
 
             FieloPLT.SObjectService.setStaticVariables();
@@ -372,13 +377,13 @@ public with sharing class TestNegativeAccruals {
             insert new FieloPLT__Transaction__c(
                 FieloPLT__Member__c = members.get(0).Id,
                 FieloPLT__IsAdjust__c = true,
-                FieloPLT__Points__c = -50
+                Flexpoint__c = -50
             );
         Test.stopTest();
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(0, members.get(0).FieloPLT__Points__c, 'Member should have 250 points left');
+        Assert.areEqual(0, members.get(0).Flexpoint__c, 'Member should have 250 points left');
 
         List<FieloPLT__Point__c> points =
             [
@@ -448,7 +453,7 @@ public with sharing class TestNegativeAccruals {
             insert new FieloPLT__Transaction__c(
                 FieloPLT__Member__c = members.get(0).Id,
                 FieloPLT__IsAdjust__c = true,
-                FieloPLT__Points__c = -500
+                Flexpoint__c = -500
             );
 
             FieloPLT.SObjectService.setStaticVariables();
@@ -476,13 +481,13 @@ public with sharing class TestNegativeAccruals {
             insert new FieloPLT__Transaction__c(
                 FieloPLT__Member__c = members.get(0).Id,
                 FieloPLT__IsAdjust__c = true,
-                FieloPLT__Points__c = -50
+                Flexpoint__c = -50
             );
         Test.stopTest();
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(0, members.get(0).FieloPLT__Points__c, 'Member should have 0 points left');
+        Assert.areEqual(0, members.get(0).Flexpoint__c, 'Member should have 0 points left');
 
         List<FieloPLT__Point__c> points =
             [
@@ -513,9 +518,9 @@ public with sharing class TestNegativeAccruals {
                 ORDER BY CreatedDate, Id
             ];
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(0, members.get(0).FieloPLT__Points__c, 'Member should have 0 points left');
+        Assert.areEqual(0, members.get(0).Flexpoint__c, 'Member should have 0 points left');
 
         Assert.areEqual(500, points.get(0).FieloPLT__TotalPoints__c, 'Wrong Total Points for Point #1');
         Assert.areEqual(500, points.get(0).FieloPLT__UsedPoints__c, 'Wrong Used Points for Point #1');
@@ -573,7 +578,7 @@ public with sharing class TestNegativeAccruals {
             insert new FieloPLT__Transaction__c(
                 FieloPLT__Member__c = members.get(0).Id,
                 FieloPLT__IsAdjust__c = true,
-                FieloPLT__Points__c = -250
+                Flexpoint__c = -250
             );
 
             insert new List<FieloPLT__Event__c> {
@@ -600,9 +605,9 @@ public with sharing class TestNegativeAccruals {
             Database.executeBatch(new FieloPLT.PointsPartialExpirationBatchSchedule());
         Test.stopTest();
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(300, members.get(0).FieloPLT__Points__c, 'Member should have 0 points left');
+        Assert.areEqual(300, members.get(0).Flexpoint__c, 'Member should have 0 points left');
 
         points =
             [
@@ -661,7 +666,7 @@ public with sharing class TestNegativeAccruals {
             insert new FieloPLT__Transaction__c(
                 FieloPLT__Member__c = members.get(0).Id,
                 FieloPLT__IsAdjust__c = true,
-                FieloPLT__Points__c = -250
+                Flexpoint__c = -250
             );
 
             insert new List<FieloPLT__Event__c> {
@@ -699,9 +704,9 @@ public with sharing class TestNegativeAccruals {
             Database.executeBatch(new FieloPLT.PointsPartialExpirationBatchSchedule());
         Test.stopTest();
 
-        members = [SELECT Id, FieloPLT__Points__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
+        members = [SELECT Id, Flexpoint__c FROM FieloPLT__Member__c WHERE Id =:members.get(0).Id];
 
-        Assert.areEqual(300, members.get(0).FieloPLT__Points__c, 'Member should have 0 points left');
+        Assert.areEqual(300, members.get(0).Flexpoint__c, 'Member should have 0 points left');
 
         points =
             [

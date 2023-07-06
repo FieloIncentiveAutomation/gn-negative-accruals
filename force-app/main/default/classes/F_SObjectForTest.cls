@@ -20,6 +20,28 @@ public class F_SObjectForTest {
 		return results;
 	}
 
+	public static FieloPLT__PointType__c createFlexpointCurrency(){
+		return new FieloPLT__PointType__c(
+			Name = 'FlexPoint',
+			FieloPLT__ExternalId__c = '00D200000006Wrs-a6k2o00000AARMm',
+			FieloPLT__MemberBalanceField__c = 'Flexpoint__c',
+			FieloPLT__TransactionBalanceField__c = 'Flexpoint__c',
+			FieloPLT__RedemptionBalanceField__c = 'Flexpoint__c',
+			FieloPLT__RedemptionItemBalanceField__c = 'Flexpoint__c',
+			FieloPLT__RewardBalanceField__c = 'Flexpoint__c',
+			FieloPLT__ConversionModeField__c = 'FlexpointConversionMode__c',
+			FieloPLT__ConversionValueField__c = 'FlexpointConversionValue__c',
+			FieloPLT__RecordFieldNameField__c = 'FlexpointFieldName__c',
+			FieloPLT__MonthsUntilExpirationField__c = 'FlexpointMonthsUntilExpiration__c',
+			FieloPLT__PointExpirationDateField__c = 'FlexpointExpirationDate__c',
+			FieloPLT__PointExpirationModeField__c = 'FlexpointExpirationMode__c',
+			FieloPLT__PointReflectionField__c = 'FlexpointReflection__c',
+			FieloPLT__TransactionExpirationDateField__c = 'FlexpointExpirationDate__c',
+			FieloPLT__DecimalsNumber__c = 2,
+			FieloPLT__Status__c = 'Active'
+		);
+	}
+
     public static List<FieloPLT__Criterion__c> createLevelCriteria(Id levelId, Integer count){
 		List<FieloPLT__Criterion__c> results = new List<FieloPLT__Criterion__c>();
 		for(Integer x = 0; x < count; x++){

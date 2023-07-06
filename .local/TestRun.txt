@@ -2,25 +2,29 @@
 NAME                 VALUE                     
 ───────────────────  ──────────────────────────
 Outcome              Passed                    
-Tests Ran            4                         
+Tests Ran            8                         
 Pass Rate            100%                      
 Fail Rate            0%                        
 Skip Rate            0%                        
 Test Run Id                                    
-Test Execution Time  10076 ms                  
+Test Execution Time  30935 ms                  
 Org Id               00D89000000PFofEAG        
 Username             devtiago@pointstrigger.org
-Org Wide Coverage    15%                       
+Org Wide Coverage    77%                       
 
 
 === Test Results
-TEST NAME                                                             OUTCOME  MESSAGE  RUNTIME (MS)
-────────────────────────────────────────────────────────────────────  ───────  ───────  ────────────
-F_TestBonusBasedStatusBatchScheduler.noTransactions                   Pass              5198        
-F_TestBonusBasedStatusBatchScheduler.positiveAndNegativeTransactions  Pass              1873        
-F_TestBonusBasedStatusBatchScheduler.positiveTransactions             Pass              1427        
-F_TestBonusBasedStatusBatchScheduler.statusBonusScheduleTest          Pass              1496        
+TEST NAME                                  OUTCOME  MESSAGE  RUNTIME (MS)
+─────────────────────────────────────────  ───────  ───────  ────────────
+TestNegativeAccruals.caseA                 Pass              7096        
+TestNegativeAccruals.caseA_WithApproval    Pass              3027        
+TestNegativeAccruals.caseB                 Pass              3063        
+TestNegativeAccruals.caseB_2               Pass              3500        
+TestNegativeAccruals.caseB_2_WithApproval  Pass              4097        
+TestNegativeAccruals.caseB_WithApproval    Pass              3378        
+TestNegativeAccruals.caseC                 Pass              3208        
+TestNegativeAccruals.caseC_WithApproval    Pass              3421        
 
 
 === Apex Code Coverage by Class
-Execution time was 13 seconds.
+Execution time was 38 seconds.

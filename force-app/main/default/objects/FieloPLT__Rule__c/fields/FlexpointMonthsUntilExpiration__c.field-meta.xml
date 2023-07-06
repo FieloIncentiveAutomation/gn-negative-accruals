@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Flexpoint__c</fullName>
-    <description>FlexPoint</description>
+    <fullName>FlexpointMonthsUntilExpiration__c</fullName>
+    <description>Flexpoint Expiration Field</description>
     <externalId>false</externalId>
-    <label>FlexPoint</label>
+    <label>Flexpoint Expiration Field</label>
     <precision>18</precision>
     <required>false</required>
-    <scale>2</scale>
-    <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>true</trackHistory>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Number</type>
     <unique>false</unique>
