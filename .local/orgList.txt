@@ -1,0 +1,63 @@
+   Type    Alias                     Username                                  Org ID             Status                Expires    
+ ─ ─────── ───────────────────────── ───────────────────────────────────────── ────────────────── ───────────────────── ────────── 
+   DevHub  crg-prod                  crg@fielo.com                             00D90000000tK74EAE Connected                        
+   DevHub  dev-hub-infra             infra@fielo.com                           00D36000000H6slEAC Connected                        
+   DevHub  devhub                    tiago.leal@fielo.com                      00D36000000H6slEAC Connected                        
+   DevHub  devhub2                   tiagodevhub@fielo.com                     00D8Y000000g5u5UAA Connected                        
+   DevHub  tleal-dev-hub             tibeal@gmail.com                          00D1a000000YkR4EAK Connected                        
+           abigail@demo              abigail-q42022@fielo-plt.com              00D3t000005BepyEAC Connected                        
+           Amazonia                  john-q42022@fielo-plt.com                 00D3t000005BepyEAC Connected                        
+           Bruno@Amazonia            bruno-q42022@fielo.com                    00D3t000005BepyEAC Connected                        
+           brunoVanillaOrg           wintersumer22update@user.com              00D680000027BeFEAU Connected                        
+           cisco_demo_001            raj.kumar@fielociscodemo.com              00DDo000000HnhMMAS Connected                        
+           cisco-old-org             david.thompson@fielociscodemo.com         00DDo000000HnhMMAS Connected                        
+           claudio@revopsdemo        fielo.elr-revops-survey@fielo.com         00DHu000001IYQqMAO Connected                        
+           dev_bartok                ciscoactivitytracker@fielo.com            00D8Y000001QSdRUAW Connected                        
+           EasyTech                  productdemo@fielo.com                     00D5Y000002SnreUAC Connected                        
+           gn-sandbox                fieloint@gn.com.accelerate                00D5E000000AXDmUAO Connected                        
+           ldv1                      ldvsandbox@fielo.com                      00DJ0000003SFiWMAW Connected                        
+           ldv2                      ldv2_master@fielo.com                     00DJ0000003HSghMAG Connected                        
+           marcello-org-001          devmay8@sf.org                            00D89000000LHlpEAG DomainNotFoundError              
+           marceloOrg                devapr004@sf.org                          00D88000000IfUXEA0 DomainNotFoundError              
+           master-at                 master@fieloat.com                        00DDn00000Dsmg8MAB Connected                        
+           master-bcc                master@fielobcc.com                       00D3i000000rN3pEAE Connected                        
+           master-cms                hugo@fielocms.com                         00D36000000qLxOEAU Connected                        
+           master-elr                master@fielo-elr.com                      00D6A0000001QOFUA2 Connected                        
+           master-mdb                master@mdb.com                            00DDn00000AvQ0BMAV Connected                        
+           master-pip                master@fielo-pip.com                      00DDn0000014QA8MAM Connected                        
+           master-plt                mariana@fieloplt.com                      00D50000000NNP6EAO Connected                        
+           master-poc2gp             master@poc2gp.org                         00DDn00000C0OglMAF Connected                        
+           member-database           master@memberdatabase.com                 00DDn00000AvaBFMAZ Connected                        
+           new-cisco-demo            fielo.ciscodeploymenttest@fielo.com       00DHu000001OoxIMAS Connected                        
+           patch-cms-1.122           admin@fielocms_1.122.patch                00D1Q000001Be08UAC Connected                        
+           patch-ee-9.4              admin@fieloee_9.4.patch                   00DE0000000fICgMAM Connected                        
+           patch-elr-1.77            admin@fieloelr_1.77.patch                 00D3s000002ZPJBEA4 Connected                        
+           patch-elr-1.79            admin@fieloelr_1.79.patch                 00D3s000003XQNgEAO Connected                        
+           patch-elr-1.92            admin@fieloelr_1.92.patch                 00D3s000003BLbFEAW Connected                        
+           patch-plt-2.114           admin@fieloplt_2.114.patch                00D2J0000009pQMUAY Connected                        
+           patch-plt-2.134           admin@fieloplt_2.134.patch                00D2J000000HJbwUAG Connected                        
+           patch-plt-2.151           admin@fieloplt_2.151.patch                00D2J000000SaxtUAC Connected                        
+           patch-plt-2.152           admin@fieloplt_2.152.patch                00DHt000000BqDyMAK Connected                        
+           patch-plt-2.157           admin@fieloplt_2.157.patch                00DHt000000HJuEMAW Connected                        
+           pentair-staging           tiago.leal@fielo.com.pentairwater.staging 00D8L0000004cUQUAY RefreshTokenAuthError            
+           qa-revops                 qa-revops@fielo.com                       00D6e000000qjOWEAY Connected                        
+           sr_testing_env            patch-2.114.60@fieloplt.org               00D4x000008Yg8KEAS Connected                        
+           summer-22-ee-001          tiago.leal-fagt@force.com                 00D3t000005EatsEAC RefreshTokenAuthError            
+           terpel-fullcopy           paulo@valuenet.com.br.pr.fullcopy         00D040000004YlqEAE Connected                        
+           terpel-prod               paulo@valuenet.com.br.pr                  00D410000011QphEAE Connected                        
+           wilson-org                test-tz01bgyw4jtr@example.com             00D88000000CBPXEA4 DomainNotFoundError              
+                                     alejandro@fieloplt.com                    00D50000000NNP6EAO RefreshTokenAuthError            
+                                     ldv1_master@fielo.com                     00DJ0000003HSgXMAW Connected                        
+                                     pipsimulator@fielo.com                    00D4x000007Jb8wEAC Connected                        
+   Scratch apiVersionUpgrade         devtiago@apiversionupgrade.org            00D89000000YjsLEAS Active                2023-09-27 
+   Scratch dev-002                   devtiago@dev-002.org                      00D53000000QqtXEAS Active                2023-10-01 
+   Scratch expirationTransaction-001 devtiago@expirationtransaction-001.org    00D89000000ZuXBEA0 Active                2023-10-05 
+   Scratch FL-13804-001              scratch@fl-13804-001.org                  00D89000000XIPZEA4 Active                2023-09-15 
+   Scratch FL-14071_Approve          test-x05ejjvio5td@example.com             00D89000000YCBdEAO Active                2023-09-07 
+   Scratch FL-14071-Release          devtiago@fl-14071-release.org             00D89000000YQRVEA4 Active                2023-09-27 
+   Scratch FL-14099_Approve          devtiago@fl-14099_approve.org             00D89000000ZSavEAG Active                2023-09-30 
+   Scratch resetSchedulers           devtiago@resetschedulers.org              00D89000000ZOttEAG Active                2023-09-29 
+   Scratch ro-issues-002             devtiago@ro-issues-002.org                00D89000000ZmD3EAK Active                2023-10-01 
+   Scratch syncIssues-005            scratchorg@syncissues-005.org             00D89000000YBx7EAG Active                2023-09-22 
+
+Legend:  🌳=Default DevHub, 🍁=Default Org 
