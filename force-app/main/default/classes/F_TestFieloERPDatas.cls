@@ -94,7 +94,7 @@ public class F_TestFieloERPDatas {
     static void scheduleOnceTest(){
 
         F_OfflineCustomSettings__c setting = F_OfflineCustomSettings__c.getOrgDefaults();
-        setting.ERPBatchDataInterval__c = 1;
+        setting.ERPBatchDataInterval__c = 1; 
         setting.Batch_Size__c = 200;
         upsert setting;
 

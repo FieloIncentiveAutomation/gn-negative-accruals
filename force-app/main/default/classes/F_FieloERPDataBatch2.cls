@@ -11,21 +11,23 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
   static final String STATUS_ERROR = 'Error';
 
   /**
+   * This class is used to process GNs ERP data records so Fielo engine is triggered and 
+   * rewards and points are calculated. 
    * @description This method will schedule the batch job each x min. This mehtod checks
    * if the same batch is already scheduled or is processing.
    */
     // Change the LOGIC HERE
     global static Boolean isScheduled(Boolean init){
-        //F_OfflineCustomSettings__c settingsInstance = F_OfflineCustomSettings__c.getInstance();
         Id jobId;
-
+        // Query for existing CronTrigger records with the same job name
         List<CronTrigger> ct = [SELECT
                                     Id, State
                                 FROM
                                     CronTrigger
                                 WHERE
                                     CronJobDetail.Name =: JOB_NAME];
-
+        
+        // Query for the number of enqueued jobs with the same Apex class and status
         if(ct.size() > 0){
             jobId = ct[0].Id;
             system.debug('ct[0].State: ' + ct[0].State);
@@ -48,29 +50,11 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
 
         }else if(init && enqueuedJobs == 2){
             abortJob(jobId);
-            /*if(jobId != null){
-                System.abortJob(jobId);
-            }
-            system.debug('jobId: ' + jobId);
-            Integer interval = Integer.valueOf(settingsInstance.ERPBatchDataInterval__c) * 60;
-            Datetime sysTime = System.now().addSeconds(interval);
-            //String CronExpression = '' + sysTime.second() + ' ' + sysTime.minute() + ' ' + sysTime.hour() + ' ' + sysTime.day() + ' ' + sysTime.month() + ' ? ' + sysTime.year();
-            String CronExpression = '' + sysTime.second() + ' ' + sysTime.minute() + ' * * * ?';
-            System.schedule(JOB_NAME, CronExpression, new F_FieloERPDataBatch2());  */
             system.debug('return 2');
             return true;
         }
         else if(enqueuedJobs == 2 && !init){
             abortJob(jobId);
-            /*if(jobId != null){
-                System.abortJob(jobId);
-            }
-            system.debug('jobId: ' + jobId);
-            Integer interval = Integer.valueOf(settingsInstance.ERPBatchDataInterval__c) * 60;
-            Datetime sysTime = System.now().addSeconds(interval);
-            //String CronExpression = '' + sysTime.second() + ' ' + sysTime.minute() + ' ' + sysTime.hour() + ' ' + sysTime.day() + ' ' + sysTime.month() + ' ? ' + sysTime.year();
-            String CronExpression = '' + sysTime.second() + ' ' + sysTime.minute() + ' * * * ?';
-            System.schedule(JOB_NAME, CronExpression, new F_FieloERPDataBatch2());*/
             system.debug('return 3');
             return true;
         }else if(enqueuedJobs == 0 && !init){
@@ -86,11 +70,6 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
                 return true;
             }else{
                 abortJob(jobId);
-                /*Integer interval = Integer.valueOf(settingsInstance.ERPBatchDataInterval__c) * 60;
-                Datetime sysTime = System.now().addSeconds(interval);
-                //String CronExpression = '' + sysTime.second() + ' ' + sysTime.minute() + ' ' + sysTime.hour() + ' ' + sysTime.day() + ' ' + sysTime.month() + ' ? ' + sysTime.year();
-                String CronExpression = '' + sysTime.second() + ' ' + sysTime.minute() + ' * * * ?';
-                System.schedule(JOB_NAME, CronExpression, new F_FieloERPDataBatch2());  */
                 system.debug('return 5.2');
                 return true;
             }
@@ -100,7 +79,7 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
         system.debug('return 6');
         return true;
     }
-
+    // Method to abort a job and reschedule it
     global static void abortJob(Id jobId){
         F_OfflineCustomSettings__c settingsInstance = F_OfflineCustomSettings__c.getInstance();
         if(jobId != null){
@@ -109,17 +88,10 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
         system.debug('jobId: ' + jobId);
         Integer interval = Integer.valueOf(settingsInstance.ERPBatchDataInterval__c) * 60;
         Datetime sysTime = System.now().addSeconds(interval);
-        //String CronExpression = '' + sysTime.second() + ' ' + sysTime.minute() + ' ' + sysTime.hour() + ' ' + sysTime.day() + ' ' + sysTime.month() + ' ? ' + sysTime.year();
         String CronExpression = '' + sysTime.second() + ' ' + sysTime.minute() + ' * * * ?';
         System.schedule(JOB_NAME, CronExpression, new F_FieloERPDataBatch2());
     }
-
-/*
-  global void execute(SchedulableContext SC) {
-    Database.executeBatch(new F_FieloERPDataBatch2());
-  }
-**/
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Method to execute the scheduled job
   global void execute(SchedulableContext SC) {
     Integer BatchSize = 5; // Set your desired batch size here
     F_OfflineCustomSettings__c customSetting = F_OfflineCustomSettings__c.getInstance();
@@ -131,15 +103,12 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
         }
     }
     Database.executeBatch(new F_FieloERPDataBatch2(), BatchSize);
-
   }
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  /**
-   * @description This method will get all members by Account Id
-   * @param accountId (Set<Id>)
-   * @return List<FieloPLT__Member__c>
-   */
+    /**
+     * @description Retrieves members associated with specified Account Ids.
+     * @param accountId Set of Account Ids to retrieve members for.
+     * @return List of FieloPLT__Member__c objects.
+     */
   public
   List<FieloPLT__Member__c> getMembers(Set<Id> accountId) {
     // clang-format off
@@ -152,7 +121,7 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
         WHERE FieloPLT__Account__c IN:accountId AND F_OptOut__c !=  true]);
     // clang-format on
   }
-
+	// Query for members based on Account Id
   global Database.QueryLocator start(Database.BatchableContext BC) {
       if(isScheduled(true)){
         return Database.getQueryLocator([
@@ -184,7 +153,7 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
 
 
   }
-
+   // Method to process the batch job
   global void execute(Database.BatchableContext BC, List<FieloERPData__c> scope) {
       try{
           List<FieloPLT__ErrorLog__c> errorLogList = new List<FieloPLT__ErrorLog__c>();
@@ -226,7 +195,7 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
                   }
                   update scope;
 
-                  //Save Batch Errors
+                  //Save Batch Errors 
                   if (errorLogList.size() > 0) {
                       insert errorLogList;
                   }
@@ -238,7 +207,7 @@ global class F_FieloERPDataBatch2 implements Database.Batchable<sobject>, Schedu
           insert errorLog;
       }
   }
-
+      // Method to finish the batch job and update the scheduling status
   global void finish(Database.BatchableContext bc) {
       isScheduled(false);
   }
